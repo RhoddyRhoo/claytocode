@@ -1,0 +1,18 @@
+
+body {
+    margin: 0;
+    background: #8C6A46;
+}
+
+#clay {
+    width: 500px;
+    height: 500px;
+    
+    background-image: url("assets/clay/clay-idle-sheet.png");
+    background-repeat: no-repeat;
+    background-size: 5000px 500px;
+    background-position: 0 0;
+    
+    image-rendering: pixelated;
+    
+}
