@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Playground</title>
+        <link rel="stylesheet" href="styles.css" />  <!-- link to style sheet --> 
+    </head>
+    
+    <body>
+        
+        <main id="playground">
+            
+            <h1>Playground</h1>
+            
+            <div id="menu">
+                <a class="menu-link" href="index.html">Home</a>
+                <a class ="menu-link" href="playground.html">Playground</a>
+            </div>
+            
+            <div id="drawing-area">
+            
+                <!-- DRAWING CANVAS -->
+                <canvas id="canvas"></canvas>
+                
+                <!-- TOOLBAR -->
+                <div id="toolbar">
+                
+                <p>Colours</p>
+                    
+                    <div id="colours">
+                        <button class="colour" data-colour="#000000"></button>
+                        <button class="colour" data-colour="#FF0000"></button>
+                        <button class="colour" data-colour="#FFFF00"></button>
+                        <button class="colour" data-colour="#0000FF"></button>
+                        <button class="colour" data-colour="#00FF00"></button>
+                        <button class="colour" data-colour="#FF00FF"></button>
+                    </div>
+                    
+                <p>Pen Size</p>
+                    
+                        <button class="size" data-size="5">Small</button>
+                        <button class="size" data-size="10">Medium</button>
+                        <button class="size" data-size="20">Large</button>
+                    
+                        <button id="bucket">Bucket</button>
+                        <button id="eraser">Eraser</button>
+                        <button id="clear">Clear</button>
+                
+                </div>
+            
+            </div>
+        
+        </main>
+        
+        <script src="script.js"></script>
+        
+    </body>
+</html>

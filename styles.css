@@ -1,18 +1,186 @@
 
+/* MAIN WEBSITE RULES */
 body {
     margin: 0;
     background: #8C6A46;
+    
+    display: flex; /* turns element into a flexbox conatiner, a tool for easily postioning things inside a box */
+    justify-content: center; /* center the content horizontally */
+    align-items: center; /* center the content vertically */
+    
+    min-height: 100vh; /* makes the element at least as tall as the entire browser window, vh = viewport height. */
 }
 
+/* IDLE CLAY BLOB */ 
 #clay {
     width: 500px;
     height: 500px;
     
     background-image: url("assets/clay/clay-idle-sheet.png");
-    background-repeat: no-repeat;
-    background-size: 5000px 500px;
-    background-position: 0 0;
+    background-repeat: no-repeat; /* stop the image from tiling and repeating */
+    background-size: 5000px 500px; /* set the size of the entire sprite sheet, 5000 wide, 500 tall. 10 frames, 
+                                5000/10 = 500 pixels wide */
+    background-position: 0 0; /* sets which part of the image is showing, 0 start at the left, 0 start at the top, first frame */
     
-    image-rendering: pixelated;
+    image-rendering: pixelated; /* keep the pixel art looking sharp */
     
+    transform: scale(1.5); /* zoom to appear 50% bigger */ 
+    
+    }
+
+/* PRESS SPACE PROMPT */
+#prompt {
+    margin-top: -10px; /* how far from bottom of blob */
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#home-menu {
+    position: fixed;
+    top: 220px;
+    left: 550px;
+    
+    display: flex;
+    gap: 25px;
+        
+    z-index: 10;
+}
+
+#menu {
+    width: 900px;
+    
+    display: flex;
+    gap: 25px;
+    
+    margin-bottom: 15px;
+}
+
+#menu-link {
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+/* PLAYGROUND */
+
+#playground {
+    width: 100%;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding-top: 80px;
+    box-sizing: border-box; /* keeps the size i specified including the padding */
+}
+
+/* PLAYGROUND TITLE */
+
+#playground h1 {
+    margin: 0 0 30px 0; /* outside spacing around the title. left to right: top (no space above), right (no space on right), 
+                        bottom (30px of space underneath), left (no space on left). */
+    
+    font-family: sans-serif;
+    color: black;
+}
+
+/* PLAYGROUND DRAWING AREA */
+
+#drawing-area {
+    width: 900px;
+    height: 550px;
+    
+    background: #E4C8AB;
+    
+    position: relative; /* keep this element in its normal position, but allow me to position things relative to it */
+}   
+
+/* PLAYGROUND CANVAS */
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    
+    display: block; /* put this element on its own line and treat it like a box */
+}
+
+/*  PLAYGROUND TOOLBAR */
+
+#toolbar {
+    position: absolute; /* allow me to place exactly where i want relative to drawing area */
+    
+    right: 15px; /* because of relative position of drawing area, toolbar is place 15px relative to where canvas is */
+    top: 15px;
+    
+    width: 120px;
+    padding: 15px;
+    
+    background: white;
+    
+    display: flex; /* use flexbox to arrange the things inside this element */
+    flex-direction: column;
+    gap: 10px;
+    
+    box-sizing: border-box;
+}
+
+/* PLAYGROUND TOOLBAR LABELS */
+
+#toolbar p {
+    margin: 0;
+    
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+/* PLAYGROUND COLOURS */
+
+#colours {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.colour {
+    width: 25px;
+    height: 25px;
+    
+    border: 1px solid black;
+    
+    cursor: pointer;
+}
+
+/* PLAYGROUND INDIVIDUAL COLOUR BUTTONS */
+
+.colour:nth-child(1) {
+    background: black;
+}
+
+.colour:nth-child(2) {
+    background: red;
+}
+
+.colour:nth-child(3) {
+    background: yellow;
+}
+
+.colour:nth-child(4) {
+    background: blue;
+}
+
+.colour:nth-child(5) {
+    background: green;
+}
+
+.colour:nth-child(6) {
+    background: pink;
+}
+
+/* PLAYGROUND TOOL BUTTONS */
+
+#toolbar button {
+    cursor: pointer;
+    
+    font-family: sans-serif;
 }
