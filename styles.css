@@ -24,6 +24,7 @@ body {
     
     image-rendering: pixelated; /* keep the pixel art looking sharp */
     
+    transform: scale(1.5);
     }
 
 /* PRESS SPACE PROMPT */
