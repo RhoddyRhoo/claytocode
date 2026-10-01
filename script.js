@@ -31,35 +31,34 @@ function animateClay() {
 
 setInterval(animateClay, frameSpeed); // run animateClay function every frameSpeed (100 miliseconds) // 
 
-// PRESS SPACE OR TAP
+// PRESS SPACE
 document.addEventListener("keydown", function(event) {
     
     if (event.code === "Space" && !squishing) {
         squishing = true;
-        currentFrame = 0; /* play from frame 0 */ 
+        currentFrame = 0;
         
-        // change to squish sprite sheet
+        // Change to squish sprite sheet
         clay.style.backgroundImage =
-            'url(assets/clay/clay-squish-sheet.png)';
-        clay.style.backgroundSize = "10500px 500px"; /* size of squish animation */
+            'url("assets/clay/clay-squish-sheet.png")';
+            
+        clay.style.backgroundSize = "10500px 500px";
         
         playSquish();
     }
 });
 
-document.addEventListener("click", function() {
-    playSquish();
-});
-
 // SQUISH ANIMATION
 function playSquish() {
-    clay.style.backgroundPosition = `-${currentFrame * squishFrameWidth}px 0`;
+    
+    clay.style.backgroundPosition =
+        `-${currentFrame * squishFrameWidth}px 0`;
     
     currentFrame++;
     
     if (currentFrame >= squishFrameCount) {
-        currentFrame = squishFrameCount - 1; /* last frame -1 (frame 20 because we start with frame 0) */
-        return; /* stop animation, so effectively stay on the last frame */ 
+        currentFrame = squishFrameCount - 1;
+        return;
     }
     
     setTimeout(playSquish, squishFrameSpeed);
@@ -89,7 +88,7 @@ canvas.addEventListener("mousedown", function(event) {
     drawing = true; /* test for mouse down, when it is down function event, drawing happens */
     
     //start a completely new line
-    ctx.begingPath(); /* context, draw usuing the default settings/tools */
+    ctx.beginPath(); /* context, draw usuing the default settings/tools */
     
     draw(event);
 });
