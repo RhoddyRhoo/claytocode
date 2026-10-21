@@ -2,8 +2,10 @@
 const clay = document.getElementById("clay"); 
 const prompt = document.getElementById("prompt");
 const prompt2 = document.getElementById("prompt2");
+prompt2.style.display = "none";
+const prompt3 = document.getElementById("prompt3");
+prompt3.style.display = "none";
 
-    prompt2.style.display = "none";
     
 // IDLE CLAY ANIMATION
 const frameWidth = 500;
@@ -17,6 +19,7 @@ const squishFrameSpeed = 100;
 
 let currentFrame = 0; // keep track of which frame its currently showing, start at frame 0 then 0 -> 1 -> 2 etc. //
 let squishing = false;
+let clayStarted = false;
 
 // MOLD CLAY ANIMATION
 const moldFrameWidth = 500;
@@ -27,9 +30,17 @@ let molding = false;
 let moldFinished = false;
 let moldFrame = 0;
 
-// IDLE CLAY ANIMATION // 
+// SCRIBE ANIMATION
+const scribeFrameWidth = 500;
+const scribeFrameCount = 122; 
+const scribeFrameSpeed = 100;
+
+let scribeFrame = 0;
+let scribing = false;
+
+// ================= IDLE CLAY ANIMATION // =============================
 function animateClay() { 
-    if (squishing) return; /* if clay is squishing (if user presses space), stop idle animation function */
+    if (clayStarted) return; /* if clay is squishing (if user presses space), stop idle animation function */
     
     clay.style.backgroundPosition = `-${currentFrame * frameWidth}px 0`; //move the sprite sheet across frameWidth (500px) //
         // to show the next frame // 
@@ -47,6 +58,7 @@ setInterval(animateClay, frameSpeed); // run animateClay function every frameSpe
 document.addEventListener("keydown", function(event) {
     
     if (event.code === "Space" && !squishing) {
+        clayStarted = true;
         squishing = true;
         currentFrame = 0;
         
@@ -63,7 +75,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-// SQUISH ANIMATION
+// ====================== SQUISH ANIMATION ================ //
 function playSquish() {
     
     clay.style.backgroundPosition =
@@ -73,6 +85,9 @@ function playSquish() {
     
     if (currentFrame >= squishFrameCount) {
         currentFrame = squishFrameCount - 1;
+       
+        squishFinished = true;
+        squishing = false; 
         
         // show the mold prompt (prompt2) 
         prompt2.style.display = "block";
@@ -83,7 +98,7 @@ function playSquish() {
     setTimeout(playSquish, squishFrameSpeed);
 }
 
-// MOLD ANIMATION
+// ============== MOLD ANIMATION =========================== //
  function playMold() {
      
     //stop if the user is no longer holding
@@ -100,6 +115,9 @@ function playSquish() {
         
         moldFinished = true;
         molding = false;
+        
+        //shiw the scribe instruction
+        prompt3.style.display = "block";
         
         return;
     }
@@ -133,6 +151,50 @@ clay.addEventListener("mouseup", function() {
 clay.addEventListener("mouseleave", function(){
     molding = false;
 });
+
+// ============= SCRIBE ANIMATION ==================== //
+
+// PRESS S TO START SCRIBING
+
+document.addEventListener("keydown", function(event) {
+    
+    if (event.code === "KeyS" && moldFinished && !scribing) {
+        
+        scribing = true;
+        scribeFrame = 0;
+        
+        //hide the prmompt
+        prompt3.style.display = "none";
+        
+        //change to the scribe sheet
+        clay.style.backgroundImage =
+            'url("assets/clay/scribe.png")';
+        
+        clay.style.backgroundSize = "61000px 500px";
+        
+        playScribe();
+    }
+});
+
+// PLAY SCRIBE ANIMATION
+
+function playScribe() {
+    
+    //show the current grame
+    clay.style.backgroundPosition = 
+        `-${scribeFrame * scribeFrameWidth}px 0`;
+    
+    scribeFrame++;
+    
+    //stop on the last frame
+    if (scribeFrame >= scribeFrameCount) {
+        scribeFrame = scribeFrameCount - 1;
+        
+        return;
+    }
+    
+    setTimeout(playScribe, scribeFrameSpeed);
+}
 
 // ============= INFO SECTION ======================== //
 

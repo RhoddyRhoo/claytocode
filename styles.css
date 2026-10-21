@@ -36,7 +36,13 @@ body {
 
 /* CLICK AND HOLD PROMPT */
 #prompt2 {
-    margin-top:  -10px;
+    margin-top: -10px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#prompt3 {
+    margin-top: -10px;
     text-align: center;
     font-family: sans-serif;
 }
@@ -85,18 +91,20 @@ body {
 
 #info-section h2 {
     margin: 0 0 10px 0;
+    
+    font-family: sans-serif
 }
 
 .info-button {
     background: none;
-    border: none;
+    border: double 4px; 
     
     padding: 0;
     
     font-family: sans-serif;
     font-size: 18px;
     
-    text-align: left;
+    text-align: center;
     
     cursor: pointer;
 }
